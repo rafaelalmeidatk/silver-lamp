@@ -1,0 +1,41 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  box-sizing: inherit;
+  height: 100%;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  font-family: 'Source Sans Pro', sans-serif;
+  font-size: 1.6rem;
+}
+
+:root {
+  --primary-color: #3d75bb;
+  --primary-color-light: #5d9ec5;
+
+  --grey-normal: #656565;
+  --grey-light: #cecece;
+  --grey-light2: #d1dce3;
+
+  --control-focus: #66afe9;
+  --control-border: #dde6e9;
+
+  --alert-error-bg: #ffcdd2;
+  --alert-error-content: #350000;
+  --alert-warning-bg: #ffecb3;
+  --alert-warning-contant: #2d2000;
+}

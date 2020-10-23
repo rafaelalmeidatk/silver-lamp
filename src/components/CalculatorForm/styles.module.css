@@ -1,0 +1,16 @@
+.form {
+  padding: 41px 69px 41px 56px;
+}
+
+@media (max-width: 630px) {
+  .form {
+    padding: 41px 36px;
+  }
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: bold;
+  color: var(--grey-normal);
+  margin-bottom: 22px;
+}

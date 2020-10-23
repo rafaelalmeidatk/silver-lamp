@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 26px;
+}
+
+:host(:last-of-type) > .container {
+  margin-bottom: 0;
+}
+
+.label {
+  margin-bottom: 6px;
+  font-size: 1.4rem;
+  line-height: 18px;
+  color: var(--grey-normal);
+}
+
+.input {
+  padding: 10px 14px 9px;
+  background-color: #fff;
+  border: 1px solid var(--control-border);
+  border-radius: 4px;
+  font-size: 1.4rem;
+  line-height: 18px;
+  color: #000;
+}
+
+.input:hover,
+.input:focus {
+  border-color: var(--control-focus);
+}
+
+.helperText {
+  margin-top: 3px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  line-height: 14px;
+  color: var(--grey-light);
+}

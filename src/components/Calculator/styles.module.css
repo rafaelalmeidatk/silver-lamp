@@ -1,0 +1,13 @@
+.calculator {
+  display: flex;
+  max-width: 608px;
+  background: #fff;
+  border: 1px solid var(--grey-light2);
+  border-radius: 4px;
+}
+
+@media (max-width: 630px) {
+  .calculator {
+    flex-direction: column;
+  }
+}
