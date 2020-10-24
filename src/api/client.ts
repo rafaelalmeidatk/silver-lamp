@@ -1,3 +1,5 @@
+// Creating our own error class for fetch errors. We want the promise to reject when
+// the request isn't 2xx, so we need a custom error to store the response
 class FetchError extends Error {
   public response: Response;
 
@@ -43,6 +45,8 @@ const post = async <T>(
   }
 };
 
+// We only have one request so this is fine here, but for more requests we may want to split
+// this into other files
 type CalculateArgs = {
   amount: number;
   installments: number;

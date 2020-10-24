@@ -1,7 +1,7 @@
 type Config = {
   days: number[];
   errorMessages: {
-    [key: string]: {
+    [name: string]: {
       type: 'error' | 'warning';
       message: string;
     };

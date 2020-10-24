@@ -9,8 +9,13 @@ type InputsValuesRef = {
   [key in FieldNames]: number | null;
 };
 
+type AlertState = {
+  type: 'error' | 'warning';
+  message: string;
+};
+
 const buildResultObject = () => {
-  return config.days.reduce<{ [key: string]: number }>((acc, curr) => {
+  return config.days.reduce<Record<string, number>>((acc, curr) => {
     acc[curr] = 0;
     return acc;
   }, {});
@@ -29,13 +34,11 @@ const Calculator = () => {
   const delayWarningTimeoutRef = useRef<number>(0);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [alert, setAlert] = useState<{
-    type: 'error' | 'warning';
-    message: string;
-  }>({
+  const [alert, setAlert] = useState<AlertState>({
     message: '',
     type: 'error',
   });
+  // Using the function argument of useState to run the build function only once
   const [result, setResult] = useState(() => buildResultObject());
 
   const handleInputChange = (name: FieldNames, value: string) => {
@@ -75,6 +78,9 @@ const Calculator = () => {
         setAlert(config.errorMessages.delay);
       }, 1500);
 
+      // In a bigger project, instead of calling the request directly we could use some
+      // library like react-query or swr to take advantage of requests dedupes, cache, etc.
+      // It is not necessary here since we only do one request
       const res = await calculate(
         { amount, installments, mdr, days: config.days },
         { signal: fetchAbortControllerRef.current.signal }
