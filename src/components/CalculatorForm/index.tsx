@@ -33,6 +33,7 @@ const CalculatorForm = ({ onInputChange, alert }: CalculatorFormProps) => {
           name="installments"
           helperText="Máximo de 12 parcelas"
           onChange={handleInputChange}
+          placeholder="0"
         />
 
         <InputField

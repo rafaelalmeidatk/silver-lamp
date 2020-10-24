@@ -6,21 +6,14 @@ export type InputProps = NumberFormatProps & {
   maskType?: 'currency' | 'percentage';
 };
 
-const Input = ({
-  suffix = 'R$ ',
-  placeholder,
-  maskType,
-  ...props
-}: InputProps) => {
-  const formatedPlaceholder = placeholder || `${suffix}0,00`;
-
+const Input = ({ suffix = 'R$ ', maskType, ...props }: InputProps) => {
   if (maskType === 'currency') {
     return (
       <NumberFormat
         prefix="R$ "
         thousandSeparator="."
         decimalSeparator=","
-        placeholder={formatedPlaceholder}
+        placeholder="R$ 0,00"
         className={styles.input}
         {...props}
       />
@@ -28,7 +21,14 @@ const Input = ({
   }
 
   if (maskType === 'percentage') {
-    return <NumberFormat suffix="%" className={styles.input} {...props} />;
+    return (
+      <NumberFormat
+        suffix="%"
+        placeholder="0%"
+        className={styles.input}
+        {...props}
+      />
+    );
   }
 
   return <input className={styles.input} {...props} />;

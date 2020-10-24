@@ -1,6 +1,5 @@
 .calcResult {
   padding: 83px 35px 35px;
-  height: 100%;
   display: flex;
   flex-direction: column;
   background-color: rgba(209, 220, 227, 0.18);
