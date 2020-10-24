@@ -29,7 +29,13 @@ const Calculator = () => {
   const delayWarningTimeoutRef = useRef<number>(0);
 
   const [isLoading, setIsLoading] = useState(false);
-  const [alertMessage, setAlertMessage] = useState('');
+  const [alert, setAlert] = useState<{
+    type: 'error' | 'warning';
+    message: string;
+  }>({
+    message: '',
+    type: 'error',
+  });
   const [result, setResult] = useState(() => buildResultObject());
 
   const handleInputChange = (name: FieldNames, value: string) => {
@@ -66,7 +72,7 @@ const Calculator = () => {
       // Before doing the request, we will create a timeout that is going to fire
       // after 1.5 seconds, in case the request is taking too long
       delayWarningTimeoutRef.current = window.setTimeout(() => {
-        setAlertMessage(config.errorMessages.delay.message);
+        setAlert(config.errorMessages.delay);
       }, 1500);
 
       const res = await calculate(
@@ -77,7 +83,7 @@ const Calculator = () => {
       // Clear the timeout to avoid showing the warning after success
       clearTimeout(delayWarningTimeoutRef.current);
 
-      setAlertMessage('');
+      setAlert((prev) => ({ ...prev, message: '' }));
 
       config.days.forEach((day) =>
         setResult((prev) => ({ ...prev, [day]: res[day] }))
@@ -103,7 +109,7 @@ const Calculator = () => {
         messageType = 'network';
       }
 
-      setAlertMessage(config.errorMessages[messageType].message);
+      setAlert(config.errorMessages[messageType]);
     }
 
     setIsLoading(false);
@@ -111,7 +117,8 @@ const Calculator = () => {
 
   return (
     <div className={styles.calculator}>
-      <CalculatorForm onInputChange={handleInputChange} />
+      <CalculatorForm onInputChange={handleInputChange} alert={alert} />
+
       <Result isLoading={isLoading} dayValueMap={result} />
     </div>
   );

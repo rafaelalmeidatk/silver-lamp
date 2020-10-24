@@ -6,9 +6,10 @@ export type FieldNames = 'amount' | 'installments' | 'mdr';
 
 type CalculatorFormProps = {
   onInputChange: (name: FieldNames, value: string) => void;
+  alert: { type: 'error' | 'warning'; message: string };
 };
 
-const CalculatorForm = ({ onInputChange }: CalculatorFormProps) => {
+const CalculatorForm = ({ onInputChange, alert }: CalculatorFormProps) => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { target } = e;
 
@@ -42,7 +43,7 @@ const CalculatorForm = ({ onInputChange }: CalculatorFormProps) => {
         />
       </div>
 
-      <Alert />
+      {alert.message && <Alert type={alert.type} message={alert.message} />}
     </div>
   );
 };

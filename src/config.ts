@@ -1,4 +1,14 @@
-export const config = {
+type Config = {
+  days: number[];
+  errorMessages: {
+    [key: string]: {
+      type: 'error' | 'warning';
+      message: string;
+    };
+  };
+};
+
+export const config: Config = {
   days: [1, 15, 30, 90],
   errorMessages: {
     unknown: {
