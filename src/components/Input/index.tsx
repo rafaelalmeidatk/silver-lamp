@@ -9,7 +9,6 @@ export type InputProps = NumberFormatProps & {
 const Input = ({
   suffix = 'R$ ',
   placeholder,
-  onChange,
   maskType,
   ...props
 }: InputProps) => {

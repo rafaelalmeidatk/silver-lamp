@@ -20,4 +20,4 @@ export const config = {
         'Não foi possível obter uma resposta, cheque sua conexão com a internet',
     },
   },
-} as const;
+};
