@@ -12,7 +12,7 @@ const InputField = ({ name, label, helperText, ...props }: InputFieldProps) => {
         {label} *
       </label>
 
-      <Input name={name} {...props} />
+      <Input id={name} name={name} {...props} />
 
       {helperText && <div className={styles.helperText}>{helperText}</div>}
     </div>

@@ -19,7 +19,7 @@ const Result = ({ isLoading, dayValueMap }: ResultProps) => {
           return (
             <p key={day}>
               {label}:{' '}
-              <span id={`day-${day}`} className={styles.value}>
+              <span data-testid={`day-${day}`} className={styles.value}>
                 R$ {value}
               </span>
             </p>
