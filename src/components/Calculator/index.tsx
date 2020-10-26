@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useRef, useCallback } from 'react';
+import debounce from 'lodash.debounce';
 import { calculate, getAbortController } from '../../api/client';
 import { config } from '../../config';
 import CalculatorForm, { FieldNames } from '../CalculatorForm';
@@ -40,16 +41,6 @@ const Calculator = () => {
   });
   // Using the function argument of useState to run the build function only once
   const [result, setResult] = useState(() => buildResultObject());
-
-  const handleInputChange = (name: FieldNames, value: string) => {
-    const numericValue = value
-      .replace('R$', '')
-      .replace(/\./g, '')
-      .replace(/,/g, '.');
-
-    inputsValuesRef.current[name] = parseFloat(numericValue);
-    calculateResult();
-  };
 
   const calculateResult = async () => {
     const { amount, installments, mdr } = inputsValuesRef.current;
@@ -119,6 +110,21 @@ const Calculator = () => {
     }
 
     setIsLoading(false);
+  };
+
+  const debouncedCalculateResult = useCallback(
+    debounce(calculateResult, 250),
+    []
+  );
+
+  const handleInputChange = (name: FieldNames, value: string) => {
+    const numericValue = value
+      .replace('R$', '')
+      .replace(/\./g, '')
+      .replace(/,/g, '.');
+
+    inputsValuesRef.current[name] = parseFloat(numericValue);
+    debouncedCalculateResult();
   };
 
   return (
