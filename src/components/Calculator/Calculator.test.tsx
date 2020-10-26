@@ -91,7 +91,7 @@ describe('Calculator', () => {
       rest.post('**/', (req, res, ctx) => {
         return res(
           ctx.status(200),
-          ctx.delay(2000),
+          ctx.delay(1600),
           ctx.json({ '1': 2694, '15': 2735, '30': 2779, '90': 2888 })
         );
       })
@@ -121,5 +121,9 @@ describe('Calculator', () => {
       },
       { timeout: 3000 }
     );
+
+    await waitFor(() => {
+      expect(screen.getByTestId('day-1').textContent).toBe('R$ 2694');
+    });
   });
 });
