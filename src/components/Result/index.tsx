@@ -7,6 +7,7 @@ type ResultProps = {
 };
 
 const Result = ({ isLoading, dayValueMap }: ResultProps) => {
+  console.log(dayValueMap);
   return (
     <div className={cx(styles.calcResult, { [styles.loading]: isLoading })}>
       <h2 className={styles.subtitle}>Você receberá:</h2>
@@ -20,7 +21,7 @@ const Result = ({ isLoading, dayValueMap }: ResultProps) => {
             <p key={day}>
               {label}:{' '}
               <span data-testid={`day-${day}`} className={styles.value}>
-                R$ {value}
+                R$ {value ?? 0}
               </span>
             </p>
           );
