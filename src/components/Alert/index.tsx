@@ -7,7 +7,7 @@ type AlertProps = {
 };
 
 const Alert = ({ type, message }: AlertProps) => {
-  // Alert icon from chakra-ui: https://github.com/chakra-ui/chakra-ui/blob/f3258be670fb863d7894f2496ff2480fac4c8fa1/packages/alert/src/alert-icons.tsx#L22
+  // Alert icon SVG from chakra-ui: https://github.com/chakra-ui/chakra-ui/blob/f3258be670fb863d7894f2496ff2480fac4c8fa1/packages/alert/src/alert-icons.tsx#L22
   return (
     <div className={cx(styles.alert, styles[type])}>
       <svg
