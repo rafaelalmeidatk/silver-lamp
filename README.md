@@ -1,5 +1,7 @@
 React project for Hash
 
+Live demo: https://hash.rafaelalmeidatk.vercel.app
+
 ## Testing some scenarios with the Chrome DevTools
 
 ### API Delay/Slow connection
